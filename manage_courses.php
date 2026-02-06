@@ -22,8 +22,8 @@ if (!isset($_SESSION['courses_list'])) {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-[url('asset/bg.png')] inset-0  object-cover size-full">
-    <div class="content-stretch flex flex-col gap-4 items-center px-[480px] py-[150px] relative ">
+<body class="bg-[url('asset/bg.png')] absolute inset-0  object-cover size-full">
+    <div class="content-stretch flex flex-col gap-4 items-center px-[480px] py-[100px] relative ">
         <!--<img alt="" className="h-48 w-full bg-cover bg-center" src{i=mgHero1} />-->
         <div class="">
             <div class="mb-5 flex flex-col font-['IBM Plex Sans Thai',sans-serif] font-bold h-[70px] justify-center leading-[0] relative shrink-0 text-[64px] text-black tracking-[-1.28px] w-full">
@@ -41,8 +41,8 @@ if (!isset($_SESSION['courses_list'])) {
                 <h1 class="block leading-[1.1] whitespace-pre-wrap">เพิ่มรายวิชาใหม่ </h1>
             </div>
             <form method="post" action="add_course.php">
-                Course: <input type="text" name="course_name" required><br><br>
-                Credit: <input type="text" name="course_credit" required><br><br>
+                Course: <input type="text" name="course_name" class="bg-transparent backdrop-blur-sm" required><br><br>
+                Credit: <input type="text" name="course_credit" class="bg-transparent backdrop-blur-sm" required><br><br>
                 <button class="bg-black hover:bg-gray-800 transition-colors content-stretch flex items-center justify-center px-[6px] py-[8px] relative rounded-[12px] shrink-0" type="submit">
                     <div class="flex flex-col font-['IBM Plex Sans Thai',sans-serif,] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-center text-white tracking-[-0.09px] w-[112px]">
                         <p class="leading-[1.45] whitespace-pre-wrap">Add Course</p>
