@@ -77,7 +77,7 @@ if (!isset($_SESSION['courses_list'])) {
                                 <td>
                                     <form onclick="return confirm('ลบวิชานี้ใช่ไหม?')" 
                                         method="post" action="delete_course.php">
-                                        <input type="int" value="<?php echo $index; ?>" name="delete_id">
+                                        <input type="int" value="<?php echo $index; ?>" name="delete_id" hidden>
                                         <input type="submit" value="[ลบ]">
                                     </a>
                                 </td>
