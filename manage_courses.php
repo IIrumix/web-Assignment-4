@@ -7,7 +7,7 @@ if (!isset($_SESSION['courses_list'])) {
     $_SESSION['courses_list'] = [];
 }
 
-if (!isset($_SESSION['courses_list'])) {
+if (!isset($_SESSION['courses'])) {
     $_SESSION['courses'] = [];
 }
 ?>
@@ -83,7 +83,6 @@ if (!isset($_SESSION['courses_list'])) {
                                         method="post" action="delete_course.php">
                                         <input type="int" value="<?php echo $index; ?>" name="delete_id" hidden>
                                         <input type="submit" value="[ลบ]">
-                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

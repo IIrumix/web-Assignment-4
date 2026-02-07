@@ -6,13 +6,29 @@ function grade_to_points($grade) {
     // Associative array mapping grades to points
     $grade_points = [
         'A' => 4.0,
+        'B+'=> 3.5,
         'B' => 3.0,
+        'C+'=> 2.5,
         'C' => 2.0,
+        'D+' => 1.5,
         'D' => 1.0,
         'F' => 0.0
     ];
-    return $grade_points[$grade] ?? null; // return null for invalid grades
+    return $grade_points[$grade]; // return null for invalid grades
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $course_index = $_POST["delete_id"] ?? "no index";
+
+    array_splice($_SESSION['courses'],$course_index,1);
+
+    header("Location: gpa_calculator.php");
+    exit();
+}
+
+$all_credit = 0;
+$all_point = 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +65,7 @@ function grade_to_points($grade) {
             </div>
 
 
-            <div class="flex flex-col">
+            <div class="flex flex-col my-5">
                 <?php if (empty($_SESSION['courses'])): ?>
                     <h1 class="text-lg">ยังไม่มีข้อมูลวิชาที่มีคะแนน</h1>
                 <?php else: ?>
@@ -58,15 +74,24 @@ function grade_to_points($grade) {
                             รายวิชา:
                             <?php echo htmlspecialchars($course['name']); ?><p>&emsp;</p>
                             เกรต:
-
+                            <?php echo htmlspecialchars($course['grade']);?><p>&emsp;</p>
                             หน่วยกิต:
                             <?php echo htmlspecialchars($course['credits']);?><p>&emsp;</p>
+                            คะแนน:
+                            <?php echo htmlspecialchars(grade_to_points($course['grade']));?><p>&emsp;</p>
                             <form onclick="return confirm('ลบวิชานี้ใช่ไหม?')"
-                                method="post" action="delete_course.php">
+                                method="post" action="gpa_calculator.php">
                                 <input type="int" value="<?php echo $index; ?>" name="delete_id" hidden>
                                 <input type="submit" value="[ลบ]">
-                        </h1>
+                            </h1>
+                            <?php $all_credit = $all_credit+$course['credits'] ?>
+                            <?php $all_point = $all_point+grade_to_points($course['grade']) ?>
                     <?php endforeach; ?>
+                    <div class="mb-5 mt-10 flex flex-col font-['IBM Plex Sans Thai',sans-serif] font-bold h-[70px] justify-center leading-[0] relative shrink-0 text-[32px] text-black tracking-[-1.28px] w-full">
+                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">หน่วยกิจรวม: <?php echo $all_credit ?></h1>
+                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">คะแนนรวม: <?php echo $all_point ?></h1>
+                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">GPA ของคุณคือ: <?php echo $all_point ?></h1>
+                    </div>
                     
 
                 <?php endif; ?>

@@ -1,17 +1,28 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['courses_list'])) {
-    $_SESSION['courses'] = [];
+if (!isset($_SESSION['courses'])) {
+  $_SESSION['courses'] = [];
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $course_name = $_POST["course_name"] ?? "no name";
   $course_grade = $_POST["course_grade"] ?? "no grade";
+  $course_credit = 0;
+
+  if (isset($_SESSION['courses_list'])) {
+    foreach ($_SESSION['courses_list'] as $course) {
+      if ($course['name'] === $course_name) {
+        $course_credit = $course['credits'];
+        break;
+      }
+    }
+  }
 
   array_push($_SESSION['courses'], [
     'name' => $course_name,
-    'grade' => $course_grade
+    'grade' => $course_grade,
+    'credits' => $course_credit
   ]);
 
 
@@ -51,14 +62,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <form action="add_grade.php" method="POST">
             <label for="course_name">เลือกวิชา:</label>
             <select name="course_name" id="course_name" class="rounded-[12px] border-solid px-[8px] py-[8px]" require>
-                <option value="" disabled selected>--เลือกวิชา--</option>
-                <?php foreach ($_SESSION['courses_list'] as $index): ?>
-                    <option value="<?= htmlspecialchars($course['name']) ?>">
-                      <?= htmlspecialchars($index['name']) ?>
-                    </option>
-                <?php endforeach; ?>
+              <option value="" disabled selected>--เลือกวิชา--</option>
+              <?php foreach ($_SESSION['courses_list'] as $index => $courseList): ?>
+                <option value="<?= htmlspecialchars($courseList['name']) ?>">
+                  <?= htmlspecialchars($courseList['name']) ?>
+                </option>
+              <?php endforeach; ?>
             </select><br>
-            Grade: <input type="numeric" name="course_grade" class="bg-transparent backdrop-blur-sm hover:bg-gray-400 transition-all rounded-md" required><br><br>
+            Grade: <input type="text" name="course_grade" class="bg-transparent backdrop-blur-sm hover:bg-gray-400 transition-all rounded-md" required><br><br>
             <button class="bg-tranparent backdrop-blur-3xl hover:bg-gray-800 transition-all content-stretch flex items-center justify-center px-24 py-[8px] relative rounded-[12px] shrink-0 text-black hover:text-white border" type="submit">
               <div class="flex flex-col font-['IBM Plex Sans Thai',sans-serif,] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-center  tracking-[-0.09px] w-[112px]">
                 <p class="leading-[1.45] whitespace-pre-wrap">Add Grade</p>
