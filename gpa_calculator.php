@@ -26,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 
-$all_credit = 0;
-$all_point = 0;
+$all_credit = 0.00;
+$all_point = 0.00;
 
 ?>
 <!DOCTYPE html>
@@ -83,14 +83,15 @@ $all_point = 0;
                                 method="post" action="gpa_calculator.php">
                                 <input type="int" value="<?php echo $index; ?>" name="delete_id" hidden>
                                 <input type="submit" value="[ลบ]">
+                            </form>
                             </h1>
                             <?php $all_credit = $all_credit+$course['credits'] ?>
-                            <?php $all_point = $all_point+grade_to_points($course['grade']) ?>
+                            <?php $all_point = $all_point+(grade_to_points($course['grade'])*$course['credits']) ?>
                     <?php endforeach; ?>
                     <div class="mb-5 mt-10 flex flex-col font-['IBM Plex Sans Thai',sans-serif] font-bold h-[70px] justify-center leading-[0] relative shrink-0 text-[32px] text-black tracking-[-1.28px] w-full">
-                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">หน่วยกิจรวม: <?php echo $all_credit ?></h1>
-                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">คะแนนรวม: <?php echo $all_point ?></h1>
-                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">GPA ของคุณคือ: <?php echo $all_point ?></h1>
+                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">หน่วยกิจรวม: <?php echo number_format($all_credit,2) ?></h1>
+                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">คะแนนรวม: <?php echo number_format($all_point,2) ?></h1>
+                        <h1 class="block leading-[1.1] whitespace-pre-wrap mb-2">GPA ของคุณคือ: <?php echo number_format($all_point/$all_credit,2) ?></h1>
                     </div>
                     
 

@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <div class="flex flex-col">
         <?php if (empty($_SESSION['courses_list'])): ?>
-          <h1 class="text-lg">ยังไม่มีข้อมูลวิชาที่มีคะแนน</h1>
+          <h1 class="text-lg">ยังไม่มีข้อมูลวิชาในระบบ</h1>
         <?php else: ?>
           <form action="add_grade.php" method="POST">
             <label for="course_name">เลือกวิชา:</label>
