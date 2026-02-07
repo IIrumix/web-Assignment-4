@@ -50,10 +50,10 @@ function grade_to_points($grade) {
 
 
             <div class="flex flex-col">
-                <?php if (empty($_SESSION['courses_list'])): ?>
+                <?php if (empty($_SESSION['courses'])): ?>
                     <h1 class="text-lg">ยังไม่มีข้อมูลวิชาที่มีคะแนน</h1>
                 <?php else: ?>
-                    <?php foreach ($_SESSION['courses_list'] as $index => $course): ?>
+                    <?php foreach ($_SESSION['courses'] as $index => $course): ?>
                         <h1 class="flex flex-row">
                             รายวิชา:
                             <?php echo htmlspecialchars($course['name']); ?><p>&emsp;</p>

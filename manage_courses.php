@@ -46,7 +46,7 @@ if (!isset($_SESSION['courses_list'])) {
             </div>
             <form method="post" action="add_course.php">
                 Course: <input type="text" name="course_name" class="bg-transparent backdrop-blur-sm hover:bg-gray-400 transition-all rounded-md" required><br><br>
-                Credit: <input type="text" name="course_credit" class="bg-transparent backdrop-blur-sm hover:bg-gray-400 transition-all rounded-md" required><br><br>
+                Credit: <input type="numeric" name="course_credit" class="bg-transparent backdrop-blur-sm hover:bg-gray-400 transition-all rounded-md" required><br><br>
                 <button class="bg-tranparent backdrop-blur-3xl hover:bg-gray-800 transition-all content-stretch flex items-center justify-center px-24 py-[8px] relative rounded-[12px] shrink-0 text-black hover:text-white border" type="submit">
                     <div class="flex flex-col font-['IBM Plex Sans Thai',sans-serif,] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-center  tracking-[-0.09px] w-[112px]">
                         <p class="leading-[1.45] whitespace-pre-wrap">Add Course</p>
