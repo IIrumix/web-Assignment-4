@@ -8,11 +8,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blob.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-[url('asset/bg.png')] absolute inset-0  object-cover size-full">
-  <div class="content-stretch flex flex-col gap-[50px] items-center px-[480px] py-[200px] relative size-full">
+<body class="m-0 p-0 h-full overflow-hidden bg-[#fffaf0]">
+  <div class="relative w-screen h-screen">
+    <div class="blob yellow blur-[50px]"></div>
+    <div class="blob yellow2 blur-[50px]"></div>
+    <div class="blob pink blur-[50px]"></div>
+
+
+  <div class="content-stretch flex flex-col gap-[50px] items-center px-[480px] py-[200px] relative size-full z-10 blur-none">
     <!--<img alt="" className="h-48 w-full bg-cover bg-center" src{i=mgHero1} />-->
     <!--<img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgHero1} />-->
     <div class="content-stretch flex flex-col h-1/2 items-center justify-between not-italic relative shrink-0 text-center" data-name="Content">
@@ -25,9 +32,8 @@
       </div>
 
       <div class="flex flex-row gap-4">
-
         <a href="manage_courses.php">
-          <button class="bg-black hover:bg-gray-800 transition-colors content-stretch flex items-center justify-center px-[16px] py-[12px] relative rounded-[12px] shrink-0" >
+          <button class="bg-black hover:bg-gray-800 transition-colors content-stretch flex items-center justify-center px-[16px] py-[12px] relative rounded-[12px] shrink-0">
             <div class="flex flex-col font-['IBM Plex Sans Thai',sans-serif,] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[18px] text-center text-white tracking-[-0.09px] w-[112px]">
               <p class="leading-[1.45] whitespace-pre-wrap">จัดการรายวิชา</p>
             </div>
@@ -41,11 +47,11 @@
             </div>
           </div>
         </a>
-
       </div>
 
     </div>
   </div>
+
 </body>
 
 </html>

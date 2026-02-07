@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['courses_list'])) {
+    $_SESSION['courses'] = [];
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $course_name = $_POST["course_name"] ?? "no name";
   $course_grade = $_POST["course_grade"] ?? "no grade";
@@ -33,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="content-stretch flex flex-col gap-[50px] items-center px-[480px] py-[200px] relative size-full">
     <div class="">
       <div class="mb-5 flex flex-col font-['IBM Plex Sans Thai',sans-serif] font-bold h-[70px] justify-center leading-[0] relative shrink-0 text-[64px] text-black tracking-[-1.28px] w-full">
-        <h1 class="block leading-[1.1] whitespace-pre-wrap">จัดการรายวิชา</h1>
+        <h1 class="block leading-[1.1] whitespace-pre-wrap">เพิ่มเกรด</h1>
       </div>
 
       <div class="justify-start bg-transparent content-stretch flex items-center px-[8px] py-[8px] relative rounded-[12px] shrink-0">
@@ -42,24 +46,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <div class="flex flex-col">
         <?php if (empty($_SESSION['courses_list'])): ?>
-            <h1 class="text-lg">ยังไม่มีข้อมูลวิชาที่มีคะแนน</h1>
+          <h1 class="text-lg">ยังไม่มีข้อมูลวิชาที่มีคะแนน</h1>
         <?php else: ?>
-            <form action="add_grade.php" method="POST">
-              <label for="course_name">เลือกวิชา:</label>
-              <select name="course_name" id="course_name" class="rounded-[12px] border-solid px-[8px] py-[8px]" require>
+          <form action="add_grade.php" method="POST">
+            <label for="course_name">เลือกวิชา:</label>
+            <select name="course_name" id="course_name" class="rounded-[12px] border-solid px-[8px] py-[8px]" require>
                 <option value="" disabled selected>--เลือกวิชา--</option>
-                  <?php foreach ($_SESSION['courses_list'] as $index): ?>
-                      <option value="<?= htmlspecialchars($course['name']) ?>">
-                        <?= htmlspecialchars($index['name']) ?>
-                      </option>
-                  <?php endforeach; ?>
-              </select><br>
-              Grade: <input type="numeric" name="course_grade" class="bg-transparent backdrop-blur-sm hover:bg-gray-400 transition-all rounded-md" required><br><br>
-              <button class="bg-tranparent backdrop-blur-3xl hover:bg-gray-800 transition-all content-stretch flex items-center justify-center px-24 py-[8px] relative rounded-[12px] shrink-0 text-black hover:text-white border" type="submit">
-                    <div class="flex flex-col font-['IBM Plex Sans Thai',sans-serif,] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-center  tracking-[-0.09px] w-[112px]">
-                        <p class="leading-[1.45] whitespace-pre-wrap">Add Grade</p>
-                    </div>
-                </button>
+                <?php foreach ($_SESSION['courses_list'] as $index): ?>
+                    <option value="<?= htmlspecialchars($course['name']) ?>">
+                      <?= htmlspecialchars($index['name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select><br>
+            Grade: <input type="numeric" name="course_grade" class="bg-transparent backdrop-blur-sm hover:bg-gray-400 transition-all rounded-md" required><br><br>
+            <button class="bg-tranparent backdrop-blur-3xl hover:bg-gray-800 transition-all content-stretch flex items-center justify-center px-24 py-[8px] relative rounded-[12px] shrink-0 text-black hover:text-white border" type="submit">
+              <div class="flex flex-col font-['IBM Plex Sans Thai',sans-serif,] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-center  tracking-[-0.09px] w-[112px]">
+                <p class="leading-[1.45] whitespace-pre-wrap">Add Grade</p>
+              </div>
+            </button>
           </form>
 
         <?php endif; ?>

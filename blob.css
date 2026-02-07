@@ -1,0 +1,67 @@
+.blob {
+  position: absolute;
+  border-radius: 30% 70% 70% 50% / 30% 40% 70% 70%;
+  opacity: 0.6;
+  mix-blend-mode: multiply; /* Helps colors blend naturally */
+  animation: change 6s linear alternate-reverse,move 20s infinite alternate,rotateShape 13S linear;
+}
+
+/* Color & Size Definitions */
+.yellow {
+  width: 600px;
+  height: 600px;
+  background: #fdfd96;
+  top: -10%;
+  left: -10%;
+}
+
+.yellow2 {
+  width: 600px;
+  height: 600px;
+  background: #fdfd96;
+  top: -10%;
+  right: -10%;
+  animation: move2 15s infinite alternate;
+}
+
+.pink {
+  width: 500px;
+  height: 500px;
+  background: #ffb7ce;
+  bottom: -10%;
+  right: -10%;
+  animation-duration: 25s; /* Different speed */
+}
+
+/* Movement Animation */
+@keyframes rotateShape {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes move {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30vw, 20vh) scale(1.1); }
+  66% { transform: translate(-10vw, 40vh) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes move2 {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(35%, 10vh); }
+  50% { transform: translate(45%, 20vh); }
+  75% { transform: translate(25%, 30vh); }
+  100% { transform: translate(20%, 0); }
+}
+
+@keyframes change {
+  0% { border-radius: 30% 70% 70% 50% / 30% 40% 70% 70%; }
+  20% { border-radius: 40% 65% 50% 50% / 40% 35% 35% 65%; }
+  40% { border-radius: 45% 50% 70% 70% / 30% 50% 40% 55%; }
+  80% { border-radius: 50% 45% 75% 45% / 55% 65% 45% 65%; }
+  100% { border-radius: 40% 65% 50% 50% / 30% 30% 70% 75%; }
+}
