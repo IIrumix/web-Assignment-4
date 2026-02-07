@@ -24,9 +24,15 @@ if (!isset($_SESSION['courses'])) {
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="blob.css">
 </head>
 
-<body class="bg-[url('asset/bg.png')] absolute inset-0  object-cover size-full">
+<body class="m-0 p-0 h-full overflow-hidden bg-[#fffaf0]">
+  <div class="relative w-screen h-screen">
+    <div class="blob yellow blur-[50px]"></div>
+    <div class="blob yellow2 blur-[50px]"></div>
+    <div class="blob pink blur-[50px]"></div>
+    
     <div class="content-stretch flex flex-col gap-4 items-center px-[480px] py-[100px] relative ">
         <!--<img alt="" className="h-48 w-full bg-cover bg-center" src{i=mgHero1} />-->
         <div class="">
@@ -95,6 +101,7 @@ if (!isset($_SESSION['courses'])) {
         </div>
 
         <!--<img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgHero1} />-->
+    </div>
     </div>
     </div>
 </body>
